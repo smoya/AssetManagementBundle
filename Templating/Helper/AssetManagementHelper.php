@@ -63,12 +63,12 @@ class AssetManagementHelper extends Helper
 
     protected function doRender(array $packages, $format)
     {
-        $html = '';
+        $html = array();
         foreach ($packages as $packageName => $attributes) {
-                $html .= $this->renderTags($this->container->get('templating.helper.assets')->getUrl($packageName), $format, $attributes);
+                $html[] = $this->renderTags($this->container->get('templating.helper.assets')->getUrl($packageName), $format, $attributes);
         }
 
-        return $html;
+        return implode('', $html);
     }
 
     protected function isValidFormat($format) {
