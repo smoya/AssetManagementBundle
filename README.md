@@ -112,7 +112,7 @@ Imagine the following case:
 {% endblock %}
 
 {% block extra %}
-    <javascript src="{{ asset('assetic/bar.js' }}" />
+    <script src="{{ asset('assetic/bar.js' }}" />
 {% endblock %}
 ```
 * widget.html.twig
@@ -124,7 +124,7 @@ Imagine the following case:
 {# This block extra is not the ::base.html.twig 'extra' block #}
 {# Because im not extending the ::base.html.twig template #}
 {% block extra %}
-    <javascript src="{{ asset('assetic/another.js' }}" />
+    <script src="{{ asset('assetic/another.js' }}" />
 {% endblock %}
 ```
 
