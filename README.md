@@ -169,11 +169,11 @@ For this we use the features of Twig adding this bundle as follows:
 ``` jinja
 {% extends '::base.html.twig' %}
 {% block content %}
-        This page extends from '::base.html.twig' template and i can include code.
-        
-{# We need to render a widget #}
-{% render AcmeTestBundle:Test:widget %}
-        
+    This page extends from '::base.html.twig' template and i can include code.
+    
+    {# We need to render a widget #}
+    {% render AcmeTestBundle:Test:widget %}
+    
 {% endblock %}
     
 {# This one can do because we inherited from the template base, which contains this block below including javascript #}
