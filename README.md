@@ -107,7 +107,7 @@ Imagine the following case:
 ```
 
 * index.html.twig
-``` html
+``` jinja
     {% extends '::base.html.twig' %}
     {% block content %}
             This page extends from '::base.html.twig' template and i can include code.
