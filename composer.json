@@ -1,0 +1,26 @@
+{
+    "name": "smoya/asset-management-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 bundle that provides an easy way for manage assetic packages inclusion in Twig Templates.",
+    "keywords": ["asset", "assetic", "css", "javascript", "manage", "bottom", "twig"],
+    "homepage": "https://github.com/smoya/AssetManagementBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergio Moya",
+            "email": "smoya89@gmail.com",
+        }
+    ],
+    "require": {
+        "php":                       ">=5.3.2",
+        "symfony/framework-bundle":  ">=2.0.0",
+        "kriswallsmith/assetic":     ">=1.0"
+    },
+    "replace": {
+        "smoya/AssetManagementBundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Smoya\\Bundle\\AssetManagementBundle": "" }
+    },
+    "target-dir": "Smoya/Bundle/AssetManagementBundle"
+}
