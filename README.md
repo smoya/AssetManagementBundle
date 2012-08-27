@@ -105,38 +105,41 @@ Imagine the following case:
    </body>
 </html>
 ```
-* index.html.twig
-``` jinja
-{% extends '::base.html.twig' %}
-{% block content %}
-        This page extends from '::base.html.twig' template and i can include code.
-        
-{# We need to render a widget #}
-{% render AcmeTestBundle:Test:widget %}
-        
-{% endblock %}
 
-{% block extra %}
-    <script src="{{ asset('assetic/bar.js' }}" />
-{% endblock %}
+* index.html.twig
+``` html
+    {% extends '::base.html.twig' %}
+    {% block content %}
+            This page extends from '::base.html.twig' template and i can include code.
+        
+    {# We need to render a widget #}
+    {% render AcmeTestBundle:Test:widget %}
+        
+    {% endblock %}
+
+    {% block extra %}
+        <script src="{{ asset('assetic/bar.js' }}" />
+    {% endblock %}
 ```
+
 * widget.html.twig
 ``` jinja
-{% block widget %}
-    I am a widget and I need render Javascript at the bottom of the website code       
-{% endblock %}
-
-{# This block extra is not the ::base.html.twig 'extra' block #}
-{# Because im not extending the ::base.html.twig template #}
-{% block extra %}
-    <script src="{{ asset('assetic/another.js' }}" />
-{% endblock %}
+    {% block widget %}
+        I am a widget and I need render Javascript at the bottom of the website code       
+    {% endblock %}
+    
+    {# This block extra is not the ::base.html.twig 'extra' block #}
+    {# Because im not extending the ::base.html.twig template #}
+    {% block extra %}
+        <script src="{{ asset('assetic/another.js' }}" />
+    {% endblock %}
 ```
 
 ###The problem and a solution:
 When using **Twig render**, and if the rendered template contains javascript, it will print where the've called. This **is a problem** if you are rendering **before** loading javascripts, especially if the code requires other libraries (eg jQuery).
 
 For this we use the features of Twig adding this bundle as follows:
+
 * ::base.html.twig
 ``` jinja
 <!DOCTYPE html>
@@ -167,36 +170,34 @@ For this we use the features of Twig adding this bundle as follows:
 ```
 * index.html.twig
 ``` jinja
-{% extends '::base.html.twig' %}
-{% block content %}
-    This page extends from '::base.html.twig' template and i can include code.
+    {% extends '::base.html.twig' %}
+    {% block content %}
+        This page extends from '::base.html.twig' template and i can include code.
+        
+        {# We need to render a widget #}
+        {% render AcmeTestBundle:Test:widget %}
+        
+    {% endblock %}
     
-    {# We need to render a widget #}
-    {% render AcmeTestBundle:Test:widget %}
-    
-{% endblock %}
-    
-{# This one can do because we inherited from the template base, which contains this block below including javascript #}
-{% block extra %}
-    <script src="{{ asset('assetic/bar.js' }}" />
-{% endblock %}
+    {# This one can do because we inherited from the template base, which contains this block below including javascript #}
+    {% block extra %}
+        <script src="{{ asset('assetic/bar.js' }}" />
+    {% endblock %}
 ```
 * widget.html.twig
 ``` jinja
-{% block widget %}
-    I am a widget and I need render Javascript at the bottom of the website code       
-{% endblock %}
+    {% block widget %}
+        I am a widget and I need render Javascript at the bottom of the website code       
+    {% endblock %}
     
-{# This block extra is not the ::base.html.twig 'extra' block #}
-{# Because im not extending the ::base.html.twig template #}
-{# add_assets adds the inclusion html code for the passed assets in the place where the render_assets() function is called #}
-{{ add_assets('assetic/bar.js', 'js') }}
+    {# add_assets adds the inclusion html code for the passed assets in the place where the render_assets() function is called #}
+    {{ add_assets('assetic/bar.js', 'js') }}
 ```
 
 ##Options and parameters
 Add Assets:    
 ``` jinja
-{{ add_assets([$ASSETS], $FORMAT, {$ATTR}) }}
+    {{ add_assets([$ASSETS], $FORMAT, {$ATTR}) }}
 ```
 
 The parameters:
@@ -207,7 +208,7 @@ The parameters:
 
 Print assets:    
 ``` jinja
-{{ render_assets($FORMAT) }}
+    {{ render_assets($FORMAT) }}
 ```
 
 The parameters:
