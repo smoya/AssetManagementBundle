@@ -18,9 +18,11 @@ class AssetManagementHelper extends Helper
     /**
      * Adds an asset package.
      *
-     * @param string $packages An asset package
-     * @param string $format The asset format
-     * @param array  $attributes An array of attributes
+     * @param  string                    $packages   An asset package
+     * @param  string                    $format     The asset format
+     * @param  array                     $attributes An array of attributes
+     * @throws \InvalidArgumentException
+     * @return void
      */
     public function add($packages, $format, $attributes = array())
     {
@@ -40,7 +42,9 @@ class AssetManagementHelper extends Helper
     /**
      * Returns HTML inclusion code of the asset packages
      *
-     * @return string The HTML inclusion code of the asset packages
+     * @param  string                    $format
+     * @throws \InvalidArgumentException
+     * @return string                    The HTML inclusion code of the asset packages
      */
     public function render($format = null)
     {
@@ -51,7 +55,7 @@ class AssetManagementHelper extends Helper
         $html = '';
 
         if ($format && array_key_exists($format, $this->packages)) {
-            $html .= $this->rend($this->packages[$format], $format);
+            $html .= $this->doRender($this->packages[$format], $format);
         } elseif (null === $format) {
             foreach ($this->packages as $packageFormat => $package) {
                 $html .= $this->doRender($this->packages[$packageFormat], $packageFormat);
@@ -71,16 +75,21 @@ class AssetManagementHelper extends Helper
         return implode('', $html);
     }
 
-    protected function isValidFormat($format) {
+    protected function isValidFormat($format)
+    {
         return in_array($format, array('js', 'css'));
     }
 
     /**
      * Render html inclusion tags.
      *
+     * @param  string $path
+     * @param  string $format
+     * @param  array  $attributes
      * @return String html inclusion tags
      */
-    protected function renderTags($path, $format, array $attributes = array()) {
+    protected function renderTags($path, $format, array $attributes = array())
+    {
         $attr = array();
         foreach ($attributes as $key => $value) {
             $attr[] = sprintf('%s=%s', $key, $value);
