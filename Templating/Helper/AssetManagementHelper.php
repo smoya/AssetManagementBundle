@@ -55,7 +55,7 @@ class AssetManagementHelper extends Helper
         $html = '';
 
         if ($format && array_key_exists($format, $this->packages)) {
-            $html .= $this->rend($this->packages[$format], $format);
+            $html .= $this->doRender($this->packages[$format], $format);
         } elseif (null === $format) {
             foreach ($this->packages as $packageFormat => $package) {
                 $html .= $this->doRender($this->packages[$packageFormat], $packageFormat);
