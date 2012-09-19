@@ -21,6 +21,8 @@ class AssetManagementHelper extends Helper
      * @param string $packages An asset package
      * @param string $format The asset format
      * @param array  $attributes An array of attributes
+     * @throws \InvalidArgumentException
+     * @return void
      */
     public function add($packages, $format, $attributes = array())
     {
@@ -40,6 +42,8 @@ class AssetManagementHelper extends Helper
     /**
      * Returns HTML inclusion code of the asset packages
      *
+     * @param string $format
+     * @throws \InvalidArgumentException
      * @return string The HTML inclusion code of the asset packages
      */
     public function render($format = null)
@@ -78,6 +82,9 @@ class AssetManagementHelper extends Helper
     /**
      * Render html inclusion tags.
      *
+     * @param string $path
+     * @param string $format
+     * @param array $attributes
      * @return String html inclusion tags
      */
     protected function renderTags($path, $format, array $attributes = array()) {
