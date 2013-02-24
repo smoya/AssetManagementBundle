@@ -53,6 +53,10 @@ Getting as a result:
             //..
         );
     }
+    
+### In 2.1*
+
+    Smoya\Bundle\AssetManagementBundle\SmoyaAssetManagementBundle()
 
 Now update vendors:
 
