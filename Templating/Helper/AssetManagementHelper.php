@@ -77,7 +77,7 @@ class AssetManagementHelper extends Helper
 
     protected function isValidFormat($format)
     {
-        return in_array($format, array('js', 'css'));
+        return in_array($format, array('js', 'css', 'inline_js', 'inline_css'));
     }
 
     /**
