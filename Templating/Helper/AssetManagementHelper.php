@@ -69,7 +69,7 @@ class AssetManagementHelper extends Helper
     {
         $html = array();
         foreach ($packages as $packageName => $attributes) {
-                $html[] = $this->renderTags($this->container->get('templating.helper.assets')->getUrl($packageName), $format, $attributes);
+                $html[] = $this->renderTags($packageName, $format, $attributes);
         }
 
         return implode('', $html);
