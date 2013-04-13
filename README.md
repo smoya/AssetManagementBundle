@@ -136,6 +136,9 @@ Imagine the following case:
     {# Because im not extending the ::base.html.twig template #}
     {% block extra %}
         <script src="{{ asset('assetic/another.js' }}" />
+        <script>
+            alert('Widget loaded');
+        </script>
     {% endblock %}
 ```
 
@@ -196,6 +199,7 @@ For this we use the features of Twig adding this bundle as follows:
     
     {# add_assets adds the inclusion html code for the passed assets in the place where the render_assets() function is called #}
     {{ add_assets('assetic/bar.js', 'js') }}
+    {{ add_assets('alert("Widget Loaded");', 'inline_js') }}
 ```
 
 ##Options and parameters
@@ -207,7 +211,7 @@ Add Assets:
 The parameters:
 
 * 1: **ASSETS** Array/Scalar An array of assets or a single asset. example: ['assetic/foo.js', 'assetic/bar.js']
-* 2: **FORMAT** String The format of the assets (js or css)
+* 2: **FORMAT** String The format of the assets (js, css, inline_js or inline_css)
 * 3: **ATTR** Array Optional Associative array of attributes for the inclusion html tag. example for a css asset: {'media': 'screen'}
 
 Print assets:    
