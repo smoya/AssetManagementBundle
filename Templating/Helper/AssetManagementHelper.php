@@ -69,7 +69,7 @@ class AssetManagementHelper extends Helper
     {
         $html = array();
         foreach ($packages as $packageName => $attributes) {
-                $html[] = $this->renderTags($this->container->get('templating.helper.assets')->getUrl($packageName), $format, $attributes);
+                $html[] = $this->renderTags($packageName, $format, $attributes);
         }
 
         return implode('', $html);
@@ -77,7 +77,7 @@ class AssetManagementHelper extends Helper
 
     protected function isValidFormat($format)
     {
-        return in_array($format, array('js', 'css'));
+        return in_array($format, array('js', 'css', 'inline_js', 'inline_css'));
     }
 
     /**
