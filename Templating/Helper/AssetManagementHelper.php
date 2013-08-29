@@ -30,8 +30,7 @@ class AssetManagementHelper extends Helper
             throw new \InvalidArgumentException(sprintf('The AssetManagementHelper does not support the format: \'%s\'.', $format));
         }
 
-        if ($packages instanceof \Twig_Markup)
-        {
+        if ($packages instanceof \Twig_Markup) {
             $packages = (string) $packages;
         }
 
